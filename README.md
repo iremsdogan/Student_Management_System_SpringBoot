@@ -1,0 +1,2 @@
+# Student_Management_System_SpringBoot
+ It is a simple student information system project developed with Spring Boot and Java 21. It manages student and course records in a PostgreSQL database. It offers a modern experience with Bootstrap interface and REST API support.
