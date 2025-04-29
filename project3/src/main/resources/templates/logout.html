@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SABIS</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="/enrollments">Enrollments</a></li>
+            </ul>
+            <a href="/login" class="btn btn-outline-light btn-sm">Login</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="text-center">
+        <h2>Logged Out</h2>
+        <p class="lead mt-3">Your session has been terminated successfully.</p>
+        <a href="/" class="btn btn-success mt-3">
+            <i class="bi bi-house-door"></i> Return to Home
+        </a>
+    </div>
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

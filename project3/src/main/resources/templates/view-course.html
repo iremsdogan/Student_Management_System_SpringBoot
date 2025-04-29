@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Details</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .course-card {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+            background: #fff;
+            max-width: 600px;
+            width: 100%;
+        }
+        .course-header {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #17a2b8;
+        }
+        .course-info {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="course-card">
+        <h1 class="course-header text-center" th:text="${course.name}"></h1>
+        <div class="course-info">
+            <p><span class="info-label">Course ID:</span> <span th:text="${course.id}"></span></p>
+            <p><span class="info-label">Credits:</span> <span th:text="${course.credit}"></span></p>
+            <p><span class="info-label">Semester:</span> <span th:text="${course.semester}"></span></p>
+            <p><span class="info-label">Description:</span> <span th:text="${course.description}"></span></p>
+        </div>
+        <div class="text-center mt-4">
+            <a th:href="@{/courses}" class="btn btn-info px-4">Back to Courses</a>
+        </div>
+    </div>
+</div>
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

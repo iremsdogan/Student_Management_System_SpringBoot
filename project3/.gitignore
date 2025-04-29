@@ -1,0 +1,22 @@
+# Logs
+logs/
+*.log
+
+# Uploads
+uploads/
+
+# IDE
+.idea/
+*.iml
+
+# Gradle
+build/
+.gradle/
+
+# Properties
+src/main/resources/application-prod.properties
+src/main/resources/application-dev.properties
+
+# Compiled files
+target/
+out/

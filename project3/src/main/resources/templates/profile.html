@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .profile-card {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+            background: #fff;
+            max-width: 520px;
+            width: 100%;
+        }
+        .profile-img {
+            border: 7px solid #17a2b8;
+            margin-top: -90px;
+            background: #fff;
+        }
+        .profile-name {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-top: 1.2rem;
+        }
+        .profile-info {
+            font-size: 1.2rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="profile-card text-center position-relative">
+        <div class="d-flex justify-content-center">
+            <img th:src="@{'/Uploads/' + ${student.profileImage}}" class="rounded-circle profile-img shadow" alt="Profile Image" width="160" height="160">
+        </div>
+        <div class="profile-name" th:text="${student.name} + ' ' + ${student.surname}"></div>
+        <div class="profile-info mt-3">
+            <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+            <p><strong>Department:</strong> <span th:text="${student.department}"></span></p>
+        </div>
+        <a th:href="@{/students}" class="btn btn-info mt-3 px-4">Back to List</a>
+    </div>
+</div>
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

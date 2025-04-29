@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Course</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .error-message { color: red; font-size: 0.875em; margin-top: 0.25rem; }
+        .card { border: none; border-radius: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .btn-primary { background-color: #4a69bd; border-color: #4a69bd; }
+        .btn-primary:hover { background-color: #3b4cca; border-color: #3b4cca; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SABIS</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/courses">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="/enrollments">Enrollments</a></li>
+            </ul>
+            <span class="navbar-text text-white me-3" th:text="${#authentication.name}">admin</span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-4">
+                <h2 class="mb-4 text-center">Add Course</h2>
+
+                <!-- Success Message -->
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle"></i> <span th:text="${successMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Error Message -->
+                <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle"></i> <span th:text="${errorMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <form th:action="@{/courses/add}" th:object="${course}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Course Name</label>
+                        <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                        <div th:errors="*{name}" class="error-message"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="credit" class="form-label">Credit</label>
+                        <input type="number" class="form-control" id="credit" th:field="*{credit}" required min="1">
+                        <div th:errors="*{credit}" class="error-message"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
+                        <div th:errors="*{description}" class="error-message"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="semester" class="form-label">Semester</label>
+                        <input type="text" class="form-control" id="semester" th:field="*{semester}" required>
+                        <div th:errors="*{semester}" class="error-message"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Add Course</button>
+                        <a th:href="@{/courses}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

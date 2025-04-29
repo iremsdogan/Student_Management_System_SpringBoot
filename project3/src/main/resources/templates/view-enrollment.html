@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Enrollment Details</title>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .enrollment-card {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+            background: #fff;
+            max-width: 600px;
+            width: 100%;
+        }
+        .enrollment-header {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #17a2b8;
+        }
+        .enrollment-info {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #333;
+        }
+        .attendance-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .attendance-badge.present {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .attendance-badge.absent {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">SABIS</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/enrollments">Enrollments</a></li>
+            </ul>
+            <span class="navbar-text text-white me-3" th:text="${#authentication.name}">admin</span>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="enrollment-card">
+        <h1 class="enrollment-header text-center">Enrollment Details</h1>
+
+        <!-- Display success message if present -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle"></i> <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Display error message if present -->
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle"></i> <span th:text="${errorMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="enrollment-info">
+            <p><span class="info-label">Student:</span> <span th:text="${enrollment.student.name + ' ' + enrollment.student.surname}"></span></p>
+            <p><span class="info-label">Course:</span> <span th:text="${enrollment.course.name}"></span></p>
+            <p><span class="info-label">Class Date:</span> <span th:text="${#temporals.format(enrollment.classDate, 'dd/MM/yyyy')}"></span></p>
+            <p><span class="info-label">Tuition:</span> <span th:text="${'$' + #numbers.formatDecimal(enrollment.tuition, 1, 2)}"></span></p>
+            <p>
+                <span class="info-label">Attendance:</span>
+                <span th:class="${enrollment.attendance ? 'attendance-badge present' : 'attendance-badge absent'}"
+                      th:text="${enrollment.attendance ? 'Present' : 'Absent'}">
+                </span>
+            </p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/enrollments}" class="btn btn-info me-2">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

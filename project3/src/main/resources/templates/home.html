@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Student Information System</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #4a69bd;
+            border-color: #4a69bd;
+        }
+        .btn-primary:hover {
+            background-color: #3b4cca;
+            border-color: #3b4cca;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card p-5 text-center mx-auto">
+    <h1 class="mb-3">Welcome!</h1>
+    <h5 class="mb-4 text-muted">Student Information System</h5>
+    <p class="mb-4">Manage students, courses, and enrollments easily.</p>
+    <a th:href="@{/login}" class="btn btn-primary btn-lg">Login</a>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
